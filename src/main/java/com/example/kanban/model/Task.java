@@ -1,5 +1,6 @@
 package com.example.kanban.model;
 
+import com.example.kanban.model.Enum.Status;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDate;
@@ -17,7 +18,7 @@ public class Task {
     private String description;
     private LocalDate creationDate = LocalDate.now();
     private LocalDate dueDate;
-    private String status = "A Fazer";
+    private Status status = Status.A_FAZER;
     private String priority = "baixa";
 
     public Long getId() {
@@ -60,11 +61,11 @@ public class Task {
         this.dueDate = dueDate;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

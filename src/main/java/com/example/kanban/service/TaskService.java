@@ -1,5 +1,6 @@
 package com.example.kanban.service;
 
+import com.example.kanban.model.Enum.Status;
 import com.example.kanban.model.Task;
 import com.example.kanban.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class TaskService {
     private TaskRepository taskRepository;
 
     public Task createTask(Task task) {
-        task.setStatus("A Fazer");
+        task.setStatus(Status.A_FAZER);
         return taskRepository.save(task);
     }
 
@@ -42,11 +43,11 @@ public class TaskService {
     public Task moveTask(Long id) {
         Task task = taskRepository.findById(id).orElseThrow();
         switch (task.getStatus()) {
-            case "A Fazer":
-                task.setStatus("Em Progresso");
+            case A_FAZER:
+                task.setStatus(Status.EMPROGRESSO);
                 break;
-            case "Em Progresso":
-                task.setStatus("Concluído");
+            case EMPROGRESSO:
+                task.setStatus(Status.CONCLUIDO);
                 break;
         }
         return taskRepository.save(task);
